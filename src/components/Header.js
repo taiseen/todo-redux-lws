@@ -1,8 +1,13 @@
 import tickImage from "../assets/images/double-tick.png";
 import noteImage from "../assets/images/notes.png";
 import plusImage from "../assets/images/plus.png";
+import { useDispatch } from 'react-redux';
+
 
 export default function Header() {
+
+    const dispatch = useDispatch();
+
     return (
         <div>
             <form className="flex items-center bg-gray-100 px-4 py-4 rounded-md">

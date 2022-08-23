@@ -3,3 +3,5 @@
 
 Todo with React, Redux
 
+* yarn add react-redux
+* yarn add redux-devtools-extension

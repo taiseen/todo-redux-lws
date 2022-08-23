@@ -1,5 +1,16 @@
 import { STATUS_CHANGED, COLOR_CHANGED } from './actionTypes';
-import initialState from './initialState';
+
+
+const initialState = {
+    status: 'All',
+    colors: []
+}
+
+
+// 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+// this reducer() function called by Redux,
+// when user dispatch an action creators from UI
+// 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
 
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -18,16 +29,21 @@ const reducer = (state = initialState, { type, payload }) => {
         case COLOR_CHANGED:
             const { color, changeType } = payload;
 
-            if (changeType === 'added') {
-                return {
-                    ...state,
-                    colors: [...state.colors, color],
-                };
-            } else {
-                return {
-                    ...state,
-                    colors: state.colors.filter(existingColor => existingColor !== color),
-                };
+            // এক সাথে ২ টা কাজ করা হচ্ছে... 
+
+            switch (changeType) {
+                case 'added': // add new item into [array]
+                    return {
+                        ...state,
+                        colors: [...state.colors, color],
+                    };
+                case 'removed': // remove selected item from [array]
+                    return {
+                        ...state,
+                        colors: state.colors.filter(existingColor => existingColor !== color),
+                    };
+                default:
+                    return state;
             }
 
         // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
