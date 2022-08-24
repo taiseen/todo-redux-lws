@@ -1,9 +1,7 @@
 import { addTodo, allComplete, clearComplete } from "../redux/todos/actionCreator";
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
-import tickImage from "../assets/images/double-tick.png";
-import noteImage from "../assets/images/notes.png";
-import plusImage from "../assets/images/plus.png";
+import images from './../assets';
 
 
 export default function Header() {
@@ -18,8 +16,13 @@ export default function Header() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(addTodo(taskInput));
-        setTaskInput('')
+
+        if (taskInput === undefined || taskInput.trim() === '') {
+            alert('Please enter todo context...')
+        } else {
+            dispatch(addTodo(taskInput));
+            setTaskInput('')
+        }
     }
 
 
@@ -29,7 +32,7 @@ export default function Header() {
                 className="flex items-center bg-gray-100 px-4 py-4 rounded-md"
                 onSubmit={handleSubmit}
             >
-                <img src={noteImage} className="w-6 h-6" alt="Add todo" />
+                <img src={images.notes} className="w-6 h-6" alt="Add todo" />
                 <input
                     type="text"
                     value={taskInput}
@@ -39,7 +42,7 @@ export default function Header() {
                 />
                 <button
                     type="submit"
-                    className={`appearance-none w-8 h-8 bg-[url('${plusImage}')] bg-no-repeat bg-contain`}
+                    className={`appearance-none w-8 h-8 bg-[url('${images.plus}')] bg-no-repeat bg-contain`}
                 ></button>
             </form>
 
@@ -50,7 +53,7 @@ export default function Header() {
                     className="flex space-x-1 cursor-pointer"
                     onClick={handleCompleatAllTask}
                 >
-                    <img className="w-4 h-4" src={tickImage} alt="Complete" />
+                    <img className="w-4 h-4" src={images.doubleTick} alt="Complete" />
                     <span>Complete All Tasks</span>
                 </li>
 
