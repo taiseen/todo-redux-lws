@@ -1,4 +1,4 @@
-import { STATUS_CHANGED, COLOR_CHANGED } from './actionTypes';
+import { STATUS_CHANGED, COLOR_CHANGED, COLOR_ADDED, COLOR_REMOVED } from './actionTypes';
 
 
 const initialState = {
@@ -17,36 +17,46 @@ const reducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
 
-        // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+        // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
         case STATUS_CHANGED:
             return {
                 ...state, status: payload
             };
 
-        // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+        // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
         case COLOR_CHANGED:
+
             const { color, changeType } = payload;
 
             // এক সাথে ২ টা কাজ করা হচ্ছে... 
 
             switch (changeType) {
-                case 'added': // add new item into [array]
+
+                // 🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
+
+                case COLOR_ADDED: // add new item into [array]
                     return {
                         ...state,
                         colors: [...state.colors, color],
                     };
-                case 'removed': // remove selected item from [array]
+
+                // 🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
+
+                case COLOR_REMOVED: // remove selected item from [array]
                     return {
                         ...state,
                         colors: state.colors.filter(existingColor => existingColor !== color),
                     };
+
+                // 🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫🟫
+
                 default:
                     return state;
             }
 
-        // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
+        // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
         default:
             return state;

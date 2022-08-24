@@ -7,3 +7,5 @@
 
 export const STATUS_CHANGED = 'filters/statusChanged';
 export const COLOR_CHANGED = 'filters/colorChanged';
+export const COLOR_ADDED = 'filters/colorAdded';
+export const COLOR_REMOVED = 'filters/colorRemoved';

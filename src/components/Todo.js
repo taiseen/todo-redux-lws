@@ -9,6 +9,7 @@ export default function Todo({ todo }) {
 
     const dispatch = useDispatch();
 
+    // data write at redux store...
     const handleStatusChange = todoId => dispatch(toggle(todoId));
     const handleColorChange = (todoId, color) => dispatch(colorSelected(todoId, color));
     const handleDeleteTodo = todoId => dispatch(deleteTodo(todoId));
@@ -37,17 +38,25 @@ export default function Todo({ todo }) {
                 }
             </div>
 
-            <div className={`select-none flex-1 cursor-pointer ${completed ? 'line-through' : ''}`}>{text}</div>
+            <div
+                className={`select-none flex-1 cursor-pointer ${completed ? 'line-through' : ''}`}
+                onClick={() => handleStatusChange(id)}
+            >
+                {text}
+            </div>
 
-            <div className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-green-500 hover:bg-green-500 ${color === 'green' && 'bg-green-500'}`}
+            <div
+                className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-green-500 hover:bg-green-500 ${color === 'green' && 'bg-green-500'}`}
                 onClick={() => handleColorChange(id, 'green')}
             ></div>
 
-            <div className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-yellow-500 hover:bg-yellow-500 ${color === 'yellow' && 'bg-yellow-500'}`}
+            <div
+                className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-yellow-500 hover:bg-yellow-500 ${color === 'yellow' && 'bg-yellow-500'}`}
                 onClick={() => handleColorChange(id, 'yellow')}
             ></div>
 
-            <div className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-red-500 hover:bg-red-500 ${color === 'red' && 'bg-red-500'}`}
+            <div
+                className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-red-500 hover:bg-red-500 ${color === 'red' && 'bg-red-500'}`}
                 onClick={() => handleColorChange(id, 'red')}
             ></div>
 
