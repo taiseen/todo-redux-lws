@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/json-server-todos
+/json-server-todos/node_modules
 /.pnp
 .pnp.js
 

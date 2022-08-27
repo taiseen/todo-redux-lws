@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Todo from "./Todo";
+import thunkFetchAllTodo from '../redux/todos/thunk/thunkFetchAllTodo';
 
 
 export default function TodoList() {
@@ -9,9 +11,20 @@ export default function TodoList() {
     const filterTask = useSelector(state => state.filter);
     const { status, colors } = filterTask;
 
+    const dispatch = useDispatch();
+
+    // calling Thunk function for async tasks for data fetching from server...
+    useEffect(() => {
+        dispatch(thunkFetchAllTodo);
+        // redux think, this is an action dispatch...
+        // but inside it, we pass full thank fetchTodos function body
+        // & thankMiddleware pass dispatch + getState function as parameter inside it...
+    }, [dispatch]);
+
 
     const filterByStatus = todo => {
-        // 2 Redux Store State are interacting here... 
+        // 2 Redux Store State are interacting here... by these condition...
+
         switch (status) {
             case 'Complete':
                 return todo.completed;
@@ -34,7 +47,7 @@ export default function TodoList() {
 
 
     return (
-        <div className="mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
+        <div className="customScroll mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
             {
                 todos.length
                     ? todos
