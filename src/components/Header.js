@@ -1,8 +1,7 @@
-import { allComplete, clearComplete } from "../redux/todos/actionCreator";
+import { addTodo, allComplete, clearComplete } from "../redux/todos/actionCreator";
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import images from './../assets';
-import thunkAddTodo from "../redux/todos/thunk/thunkAddTodo";
 
 
 export default function Header() {
@@ -21,7 +20,7 @@ export default function Header() {
         if (taskInput === undefined || taskInput.trim() === '') {
             alert('Please enter todo context...')
         } else {
-            dispatch(thunkAddTodo(taskInput));
+            dispatch(addTodo(taskInput));
             setTaskInput('')
         }
     }

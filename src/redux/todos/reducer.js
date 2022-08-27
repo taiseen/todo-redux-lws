@@ -1,7 +1,19 @@
-import { ADDED, TOGGLED, DELETED, COLOR_SELECTED, ALL_COMPLETED, CLEAR_COMPLETED, LOADED } from './actionTypes';
+import { ADDED, TOGGLED, DELETED, COLOR_SELECTED, ALL_COMPLETED, CLEAR_COMPLETED } from './actionTypes';
 
 
-export const initialState = []
+export const initialState = [
+    {
+        id: 1,
+        text: 'Learn React',
+        completed: true,
+    },
+    {
+        id: 2,
+        text: 'Learn Redux',
+        completed: false,
+        color: 'red',
+    },
+]
 
 
 // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
@@ -9,20 +21,10 @@ export const initialState = []
 // when user dispatch an action creators from UI
 // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
 
-const nextTodoId = (todos) => {
-    const maxId = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
-    return maxId + 1;
-};
 
 const reducer = (state = initialState, { type, payload }) => {
 
     switch (type) {
-
-        // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
-
-        case LOADED:
-
-            return payload;
 
         // 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
 
@@ -31,7 +33,7 @@ const reducer = (state = initialState, { type, payload }) => {
             return [
                 ...state,
                 {
-                    id: nextTodoId(state),
+                    id: state.length + 1,
                     text: payload,
                     completed: false,
                 },
