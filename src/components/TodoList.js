@@ -23,7 +23,8 @@ export default function TodoList() {
 
 
     const filterByStatus = todo => {
-        // 2 state || 2 reducer are aggregate here, by these condition...
+        // 2 Redux Store State are interacting here... by these condition...
+
         switch (status) {
             case 'Complete':
                 return todo.completed;
