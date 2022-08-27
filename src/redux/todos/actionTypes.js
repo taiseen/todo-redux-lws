@@ -5,6 +5,7 @@
 // 🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨
 
 
+export const LOADED = 'todo/loaded';
 export const ADDED = 'todo/added';
 export const TOGGLED = 'todo/toggled';
 export const DELETED = 'todo/deleted';
