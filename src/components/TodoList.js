@@ -11,7 +11,7 @@ export default function TodoList() {
 
 
     const filterByStatus = todo => {
-
+        // 2 Redux Store State are interacting here... 
         switch (status) {
             case 'Complete':
                 return todo.completed;
